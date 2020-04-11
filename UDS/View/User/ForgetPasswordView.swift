@@ -34,11 +34,8 @@ struct ForgetPasswordView: View {
             
             Spacer()
             
-            TextField("Email", text: $viewModel.email)
-                .padding(10)
-                .background(Color.init(red: 230/255, green: 230/255, blue: 230/255))
-                .cornerRadius(100)
-                
+            TextFieldView(placeholder: "Email", value: $viewModel.email)
+            
             PrimaryButtonView(action: {
                 self.canClose = self.viewModel.recoverPassword()
             }, label: "Recuperar senha")

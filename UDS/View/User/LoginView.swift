@@ -65,14 +65,21 @@ struct LoginView: View {
             
             NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main){ (notification) in
                 
-                let value = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
-                let height = value.height
-                self.value = height - 210
+                
+                if(!self.isPresentingNewUserModal && !self.isPresentingForgetPasswordModal){
+                    let value = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+                    let height = value.height
+                    self.value = height - 210
+                }
+                
+                
             }
             
             NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main){ (notification) in
                 
-                self.value = 0
+                if(!self.isPresentingNewUserModal && !self.isPresentingForgetPasswordModal){
+                    self.value = 0
+                }
             }
         }
     }
